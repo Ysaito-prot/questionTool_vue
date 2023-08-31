@@ -41,9 +41,13 @@ Vue.createApp({
   // 画面が読み込まれたときに1度だけ発動
   created() {
     // setTimeoutで1000ms後にshowをfalseにする
-    setTimeout(() => {
-      this.AdvisorMsgShow0 = true;
-    }, 1000);
+    // setTimeout(() => {
+    //   this.AdvisorMsgShow0 = true;
+    // }, 1000);
+    
+    this.waiting;
+    this.AdvisorMsgShow0 = true;
+    
     setTimeout(() => {
       this.AdvisorMsgShow1 = true;
       this.AdvloadingView = true;
@@ -135,6 +139,17 @@ Vue.createApp({
     }
   },
   methods: {
+    async waiting() {
+      await this.wait(1000);
+    },
+    async waiting2() {
+      await this.wait(2000);
+    },
+    wait: function (time) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, time);
+      });
+    },
     showFlash() {
       setTimeout(() => {
         this.view = !this.view;
