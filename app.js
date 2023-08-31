@@ -39,146 +39,114 @@ Vue.createApp({
     };
   },
   // 画面が読み込まれたときに1度だけ発動
-  created() {
-    // setTimeoutで1000ms後にshowをfalseにする
-    // setTimeout(() => {
-    //   this.AdvisorMsgShow0 = true;
-    // }, 1000);
-    
-    this.waiting;
+  created: async function () {
+    await this.wait(1000);
     this.AdvisorMsgShow0 = true;
-    
-    setTimeout(() => {
-      this.AdvisorMsgShow1 = true;
-      this.AdvloadingView = true;
-    }, 2000);
+    await this.wait(1000);
+    this.AdvisorMsgShow1 = true;
+    this.AdvloadingView = true;
   },
   // Vueインスタンスに変化があったら発動する
-  updated() {
+  updated: async function () {
     if (this.AdvisorMsgShow1 === true && this.AdvisorMsgShow2 === false) {
-      setTimeout(() => {
-        this.AdvisorMsgShow2 = true;
-      }, 1000);
-      setTimeout(() => {
-        this.AdvisorMsgShow3 = true;
-        this.AdvloadingView1 = true;
-      }, 2000);
+      await this.wait(1000);
+      this.AdvisorMsgShow2 = true;
+
+      await this.wait(1000);
+      this.AdvisorMsgShow3 = true;
+      this.AdvloadingView1 = true;
     }
     if (this.AdvisorMsgShow3 === true && this.AdvisorMsgShow4 === false) {
-      setTimeout(() => {
-        this.QuestionShow = true;
-        window.scrollTo({
-          top: 50,
-          behavior: "smooth",
-        });
-      }, 1000);
+      await this.wait(1000);
+      this.QuestionShow = true;
+      window.scrollTo({
+        top: 50,
+        behavior: "smooth",
+      });
     }
 
     // 計算ボタンの条件分岐
     // ざっくり計算を押した場合
     if (this.UserMsgShow3 === true) {
-      setTimeout(() => {
-        this.AdvisorMsgShow4 = true;
-      }, 1000);
-      setTimeout(() => {
-        this.AdvisorMsgShow5 = true;
-        this.AdvloadingView3 = true;
-      }, 2000);
-      setTimeout(() => {
-        this.AdvisorMsgShow6 = true;
-      }, 3000);
-      setTimeout(() => {
-        this.AdvisorMsgShow7 = true;
-        this.AdvloadingView4 = true;
-      }, 4000);
+      await this.wait(1000);
+      this.AdvisorMsgShow4 = true;
+
+      await this.wait(1000);
+      this.AdvisorMsgShow5 = true;
+      this.AdvloadingView3 = true;
+
+      await this.wait(1000);
+      this.AdvisorMsgShow6 = true;
+
+      await this.wait(1000);
+      this.AdvisorMsgShow7 = true;
+      this.AdvloadingView4 = true;
     }
     // しっくり計算を押した場合
     if (this.UserMsgShow6 === true) {
-      setTimeout(() => {
-        this.AdvisorMsgShow4 = true;
-      }, 1000);
-      setTimeout(() => {
-        this.AdvisorMsgShow5 = true;
-        this.AdvloadingView3 = true;
-      }, 2000);
-      setTimeout(() => {
-        this.AdvisorMsgShow8 = true;
-      }, 3000);
-      setTimeout(() => {
-        this.AdvisorMsgShow9 = true;
-        this.AdvloadingView5 = true;
-      }, 4000);
+      await this.wait(1000);
+      this.AdvisorMsgShow4 = true;
+      await this.wait(1000);
+      this.AdvisorMsgShow5 = true;
+      this.AdvloadingView3 = true;
+      await this.wait(1000);
+      this.AdvisorMsgShow8 = true;
+      await this.wait(1000);
+      this.AdvisorMsgShow9 = true;
+      this.AdvloadingView5 = true;
       if (this.AdvisorMsgShow9 === true && this.bestImg === false) {
-        setTimeout(() => {
-          window.scrollTo({
-            top: 290,
-            behavior: "smooth",
-          });
-        }, 500);
+        await this.wait(1000);
+        window.scrollTo({
+          top: 290,
+          behavior: "smooth",
+        });
       }
-      setTimeout(() => {
-        this.bestIcon = true;
-      }, 7000);
-      setTimeout(() => {
-        this.graph = true;
-        this.bestImg = true;
-      }, 6000);
-      setTimeout(() => {
-        this.cheapestIcon = true;
-      }, 9000);
-      setTimeout(() => {
-        this.cheapestImg = true;
-      }, 8000);
-      setTimeout(() => {
-        this.AdvisorMsgShow10 = true;
-      }, 10000);
-      setTimeout(() => {
-        this.AdvisorMsgShow11 = true;
-        this.AdvloadingView6 = true;
-      }, 11000);
+      await this.wait(1000);
+      this.graph = true;
+      this.bestImg = true;
+      await this.wait(1000);
+      this.bestIcon = true;
+      await this.wait(1000);
+      this.cheapestImg = true;
+      await this.wait(1000);
+      this.cheapestIcon = true;
+      await this.wait(1000);
+      this.cheapestImg = true;
+      await this.wait(1000);
+      this.AdvisorMsgShow10 = true;
+      await this.wait(1000);
+      this.AdvisorMsgShow11 = true;
+      this.AdvloadingView6 = true;
     }
   },
   methods: {
-    async waiting() {
-      await this.wait(1000);
-    },
-    async waiting2() {
-      await this.wait(2000);
-    },
     wait: function (time) {
       return new Promise((resolve, reject) => {
         setTimeout(resolve, time);
       });
     },
-    showFlash() {
-      setTimeout(() => {
-        this.view = !this.view;
-      }, 1000);
-      setTimeout(() => {
-        this.UserMsgShow1 = true;
-      }, 2000);
-      setTimeout(() => {
-        this.UserMsgShow2 = true;
-        this.UserloadingView = true;
-      }, 3000);
-      setTimeout(() => {
-        this.UserMsgShow3 = true;
-      }, 3500);
+    showFlash: async function () {
+      await this.wait(1000);
+      this.view = !this.view;
+
+      await this.wait(1000);
+      this.UserMsgShow1 = true;
+      await this.wait(1000);
+      this.UserMsgShow2 = true;
+      this.UserloadingView = true;
+      await this.wait(1000);
+      this.UserMsgShow3 = true;
     },
-    showFlash2() {
-      setTimeout(() => {
-        this.view = !this.view;
-      }, 1000);
-      setTimeout(() => {
-        this.UserMsgShow4 = true;
-      }, 2000);
-      setTimeout(() => {
-        this.UserMsgShow5 = true;
-        this.UserloadingView = true;
-      }, 3000);
-      setTimeout(() => {
-        this.UserMsgShow6 = true;
-      }, 3500);
+    showFlash2: async function () {
+      await this.wait(1000);
+      this.view = !this.view;
+      await this.wait(1000);
+      this.UserMsgShow4 = true;
+      await this.wait(1000);
+      this.UserMsgShow5 = true;
+      this.UserloadingView = true;
+      await this.wait(1000);
+      this.UserMsgShow6 = true;
     },
   },
 })
