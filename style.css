@@ -1,0 +1,612 @@
+@charset "UTF-8";
+
+.form__Submit {
+  margin-bottom: 700px;
+}
+
+.form-contents {
+  margin: 0 auto;
+}
+.form-last-field {
+  /* display: none; */
+  margin: 0 auto;
+  width: 880px;
+}
+.header-performance {
+  position: fixed;
+  z-index: 1;
+}
+
+.header-performance__inner {
+  padding-left: 30px;
+  padding-top: 10px;
+}
+.header-performance__txt {
+  -webkit-font-feature-settings: "palt" 1;
+  font-feature-settings: "palt" 1;
+  color: #777;
+  font-size: 15px;
+}
+img {
+  height: auto;
+  max-width: 70%;
+}
+.header-performance__badge{
+  height: auto;
+  max-width: 70%;
+}
+.chatContainer {
+  margin-top: 30px;
+  padding-top: 30px;
+}
+.chatMessage-Advisor, .chatMessage-User {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  max-width: 700px;
+  position: relative;
+  width: 95%;
+}
+.chatMessage-User {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.chatMessage-Advisor .chatMessage-text {
+  border-radius: 22px;
+}
+.chatMessage-Advisor .chatMessage-text::before {
+  -webkit-transform: rotate(32deg);
+  background-image: none;
+  border: 6px solid transparent;
+  border-right: 12px solid #fff;
+  content: "";
+  height: 0;
+  left: -13px;
+  margin-top: -14px;
+  position: absolute;
+  top: 14px;
+  transform: rotate(32deg);
+  width: 0;
+  z-index: 1;
+}
+.chatMessage-Advisor .chatMessage-text::after {
+  -webkit-transform: rotate(32deg);
+  border: 7px solid transparent;
+  border-right: 15px solid #3096d4;
+  content: "";
+  left: -18px;
+  margin-top: -15px;
+  position: absolute;
+  top: 12px;
+  transform: rotate(32deg);
+}
+.chatMessage-Advisor+.chatMessage-Advisor.hasImage {
+  margin-top: 30px;
+}
+.icon-image {
+  background: url(https://assets.nuri-kae.jp/lp/assets/kaitai/item/icon-6c5e22c82faff98cde19d4047022588310ebe50fb157aa7d0ac4ef6212e5c255.png) no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  flex-basis: 80px;
+  flex-shrink: 0;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+.icon-image::before {
+  bottom: -15px;
+  content: "大竹";
+  font-size: 12px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+.icon-image.hidden {
+  opacity: 0;
+}
+.icon-image.hidden + .chatMessage-text {
+  margin-top: 10px;
+}
+
+.chatMessage-text {
+  background: #fff;
+  border: 2px solid #3096d4;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 30px 0 0 105px;
+  padding: 12px 15px;
+  position: relative;
+}
+.chatMessage-User .chatMessage-text {
+  background-color: #069a98;
+  border: 2px solid #069a98;
+  border-radius: 22px;
+  margin: 10px 0 0 auto;
+}
+.chatMessage-User .chatMessage-text__already-read.afterRead {
+  visibility: visible;
+}
+.chatMessage-User .chatMessage-text__already-read {
+  bottom: 0;
+  font-size: 14px;
+  font-weight: 100;
+  position: absolute;
+  right: 104%;
+  visibility: hidden;
+  width: 30px;
+}
+.chatMessage-User .chatMessage-text::after {
+  -webkit-transform: rotate(-37deg);
+  background-image: none;
+  border: 7px solid transparent;
+  border-left: 15px solid #069a98;
+  content: "";
+  height: 0;
+  margin-top: -15px;
+  position: absolute;
+  right: -14px;
+  top: 23%;
+  transform: rotate(-37deg);
+  width: 0;
+}
+.chatMessage-User .chatMessage-text-title {
+  color: #fff;
+}
+/*--------------------
+ グラフ
+---------------------*/
+.calcStartup__graph {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto 10px;
+  width: 320px;
+  height: 300px;
+}
+.calcStartup__bestGraph, .calcStartup__cheapestGraph {
+  align-content: flex-end;
+  /* bottom: -50px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* 非表示に関する */
+  /* opacity: 0; */
+  position: relative;
+  width: 44%;
+}
+.calcStartup__bestIcon {
+  background-image: url(https://assets.nuri-kae.jp/lp/assets/mizumawari_bath/icon_image/best-ae89bc6e2394ac7fd2545c75901a81be70358d2f84c5132736e9759ad669c9ef.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 50%;
+}
+.calcStartup__bestImg {
+  background-image: url(https://assets.nuri-kae.jp/lp/assets/mizumawari_bath/icon_image/300-7c66a1c647d593a91f6fae53162de869bcd07d8c55a9c0f19fdbed73873b9e2a.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 182px;
+  width: 100%;
+}
+.calcStartup__cheapestIcon {
+  background-image: url(https://assets.nuri-kae.jp/lp/assets/mizumawari_bath/icon_image/cheapest-dafcbdfca74e6f855ff702ddf43e5c176f060fb605cdface8ffe02525920cf35.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 50%;
+}
+.calcStartup__cheapestImg {
+  background-image: url(https://assets.nuri-kae.jp/lp/assets/mizumawari_bath/icon_image/10-a4350b98ce4f81b9a40d99d8069e442cda05be5707e65ced2a46320c7060e2ba.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 91px;
+  width: 100%;
+}
+
+/* スライドインアニメーション */
+.calcStartup__bestImg,.calcStartup__cheapestImg {
+  animation: SlideIn .5s;
+}
+
+/* CSSアニメーションの設定 */
+@keyframes SlideIn {
+  0% {
+    opacity: 0;
+    /* 初期状態では透明に */
+    transform: translateY(64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* フェードインアニメーション */
+.calcStartup__bestIcon, .calcStartup__cheapestIcon {
+  animation-name:fadeInAnime;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+  opacity:0;
+}
+@keyframes fadeInAnime{
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+} 
+
+
+/*--------------------
+ フッター
+---------------------*/
+footer {
+  align-items: center;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  text-align: center;
+
+}
+#footer .footer__link {
+  display: flex;
+  margin-bottom: 0;
+}
+#footer .footer__link .footer__link-item a {
+  color: #777;
+  display: block;
+  font-size: 10px;
+  height: 100%;
+  transition: all 0.3s;
+  width: 100%;
+}
+#footer .footer__link .footer__link-item {
+  line-height: 1;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+#footer .footer__link .footer__link-item:nth-child(1) {
+  border-right: 1px solid #777;
+}
+
+ul, li {
+  list-style-type: none;
+}
+#footer .footer__copy {
+  color: #777;
+  font-size: 10px;
+  line-height: 1;
+}
+
+#wrap {
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari_bath/pc/chat/bg/bath_chat_bg-e67d06e12633fa78941efc5c5378ceeb47ea385e28ff18ac92251aec7f4a1abb.png);
+  background-repeat: repeat;
+  box-sizing: border-box;
+  min-height: calc(100vh - 20px);
+  overflow: hidden;
+  padding-bottom: 30px;
+  position: relative;
+  width: 100%;
+}
+
+/*--------------------
+ ざっくり・しっかり計算ボタン
+---------------------*/
+.chatMessage-Question {
+  margin: 40px auto 0;
+  max-width: 700px;
+  position: relative;
+}
+.chatMessage-Question.calculation .chatMessage-Question__inner {
+  background-color: rgba(107,203,228,0.5);
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: space-around; */
+  margin: 0 auto;
+  padding: 20px 20px 16px;
+  width: 95%;
+}
+.calcTypeSelect__buttonUnit {
+  font-family: "Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  /* height: 194px; */
+  width: 47.9661016949%;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #007b80;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #0dbdbb;
+  color: #000;
+  /* display: flex; */
+  height: 190px;
+  justify-content: center;
+}
+.calcTypeSelect__buttonLabelText {
+  display: block;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 1.7;
+  text-align: center;
+}
+.calcTypeSelect__buttonLabelSubText {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* 選択項目ボタン */
+.chatMessage-Question__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: -25px;
+}
+.chatMessage-Question__buttonUnit {
+  height: 160px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  width: 160px;
+}
+.chatMessage-Question.area .chatMessage-Question__buttonUnit {
+  height: 100px;
+}
+
+.chatMessage-Question__buttonUnit input[type=radio] {
+  display: none;
+}
+.chatMessage-Question__button {
+  align-items: center;
+  background: #fff;
+  border: 2px solid #7d7d7d;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 #4abdbb;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  padding: 0 5px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+#Input_items_3_1 + .chatMessage-Question__button,
+#Input_items_3_2 + .chatMessage-Question__button,
+#Input_items_3_3 + .chatMessage-Question__button,
+#Input_items_3_4 + .chatMessage-Question__button,
+#Input_items_3_5 + .chatMessage-Question__button {
+  padding-top: 105px;
+}
+
+#Input_items_3_1 + .chatMessage-Question__button::before{
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari/btn-icon/normal_bath01-d3ecb818a39a3e5b035d2c387f123e9b660c2f0f5bceb8f58869f232a6d731cc.png) no-repeat center center;
+  background-size: contain;
+  content: "";
+  display: block;
+  height: 70px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100%;
+}
+#Input_items_3_2 + .chatMessage-Question__button::before{
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari/btn-icon/normal_bath02-5082c8d5e5a1deeffb57b307a4c85d7f6f3fa65d7e6e73edd9e43748fd368c29.png) no-repeat center center;
+  background-size: contain;
+  content: "";
+  display: block;
+  height: 70px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100%;
+}
+#Input_items_3_3 + .chatMessage-Question__button::before{
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari/btn-icon/normal_all01-fd019ced345af32dfa2d6534424dc92210d186d64bce326341c37f3692dc199a.png) no-repeat center center;
+  background-size: contain;
+  content: "";
+  display: block;
+  height: 70px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100%;
+}
+#Input_items_3_4 + .chatMessage-Question__button::before{
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari/btn-icon/normal_bath03-6fb2afe74601a4cb54826b92961e67b00b512d51d13eafd80a95dc4ca5b816f3.png) no-repeat center center;
+  background-size: contain;
+  content: "";
+  display: block;
+  height: 70px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100%;
+}
+#Input_items_3_5 + .chatMessage-Question__button::before{
+  background: url(https://assets.nuri-kae.jp/lp/assets/mizumawari/btn-icon/normal_bath04-052013c32d1347a7ac3c170fd8d13818bd7a15f8205cf82b6b9c4244a759a7ff.png) no-repeat center center;
+  background-size: contain;
+  content: "";
+  display: block;
+  height: 70px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100%;
+}
+.chatMessage-Question__inner--itemWrap {
+  justify-content: flex-start;
+}
+
+/* 選択ボタン選択時の挙動 */
+.colorChange01 {
+  color: #fff;
+  background-color: #0dbdbb;
+  /* box-shadow:none */
+}
+.colorChange02 {
+  color: #fff;
+  background-color: #0dbdbb;
+  /* box-shadow:none */
+}
+.colorChange1 {
+  color: #fff;
+  background-color: #0dbdbb;
+  box-shadow:none
+}
+ .colorChange2 {
+   background-color: rgb(188, 192, 192);
+   opacity:0.5;
+   box-shadow:none
+}
+.colorChange3 {
+    color: #fff;
+    background-color: #0dbdbb;
+    box-shadow:none
+ }
+ .colorChange4 {
+     background-color: rgb(188, 192, 192);
+     opacity:0.5;
+     box-shadow:none
+ }
+ .colorChange5 {
+      color: #fff;
+      background-color: #0dbdbb;
+      box-shadow:none
+}
+.colorChange6 {
+       background-color: rgb(188, 192, 192);
+       opacity:0.5;
+       box-shadow:none
+}    
+.colorChange100 {
+  background-color: rgb(188, 192, 192);
+       opacity:0.5;
+       box-shadow:none
+}
+.is-active{
+  color: #fff;
+  background-color: #0dbdbb;
+  opacity:1;
+  box-shadow:none
+}
+
+/* ローディングの表示非表示 */
+.questionView {
+  display: none;
+}
+/* アドバイザーローディング */
+.AdvloadingView {
+  display: none;
+}
+.AdvloadingView1 {
+  display: none;
+}
+.AdvloadingView2 {
+  display: none;
+}
+.AdvloadingView3 {
+  display: none;
+}
+.AdvloadingView4 {
+  display: none;
+}
+.AdvloadingView5 {
+  display: none;
+}
+.AdvloadingView6 {
+  display: none;
+}
+.AdvloadingView7 {
+  display: none;
+}
+.AdvloadingView8 {
+  display: none;
+}
+.AdvloadingView9 {
+  display: none;
+}
+.AdvloadingView10 {
+  display: none;
+}
+.AdvloadingView11 {
+  display: none;
+}
+.AdvloadingView100 {
+  display: none;
+}
+
+/* ユーザーローディング */
+.UserloadingView {
+  display: none;
+}
+.UserloadingView2 {
+  display: none;
+}
+.UserloadingView3 {
+  display: none;
+}
+.UserloadingView4 {
+  display: none;
+}
+.UserloadingView100 {
+  display: none;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: .25;
+    transform: scale(.75);
+  }
+}
+.spinner-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+/* PULSE BUBBLES */
+
+.pulse-container {
+  width: 100%;
+  display: flex;
+  column-gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pulse-bubble {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d6e1e0;
+}
+
+.pulse-bubble-1 {
+    animation: pulse .4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+    animation: pulse .4s ease .2s infinite alternate;
+}
+.pulse-bubble-3 {
+    animation: pulse .4s ease .4s infinite alternate;
+}
