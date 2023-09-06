@@ -1,0 +1,30 @@
+[
+  {
+    "item": "茨城県",
+    "kind": "Input_items_22_1"
+  },
+  {
+    "item": "栃木県",
+    "kind": "Input_items_22_2"
+  },
+  {
+    "item": "群馬県",
+    "kind": "Input_items_22_3"
+  },
+  {
+    "item": "埼玉県",
+    "kind": "Input_items_22_4"
+  },
+  {
+    "item": "千葉県",
+    "kind": "Input_items_22_5"
+  },
+  {
+    "item": "東京都",
+    "kind": "Input_items_22_6"
+  },
+  {
+    "item": "神奈川県",
+    "kind": "Input_items_22_7"
+  }
+]

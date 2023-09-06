@@ -26,26 +26,54 @@
                 <div class="form-contents">
                     <div class="form-last-field">
                         <div class="chatContainer">
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow0 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView}">
-                                        <loading></loading>
+                            <div class="chatchat" v-for="item in allMsg2">
+                                <!-- アドバイザーメッセージ -->
+                                <div class="chatMessage-Advisor hasImage" v-if="item.type === 'adv'">
+                                    <div class="icon-image">
                                     </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow1 === true"> ２つの方法で相場を計算することができます。 </div>
+                                    <div class="chatMessage-text">
+                                        <div class="message-loader" v-if="item.loading === 'load'">
+                                            <loading></loading>
+                                        </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                    </div>
+                                </div>
+                                <!-- アドバイザーメッセージ(アイコンなし) -->
+                                <div class="chatMessage-Advisor" v-if="item.type === 'advNoIcon'">
+                                    <div class="icon-image hidden">
+                                    </div>
+                                    <div class="chatMessage-text">
+                                        <div class="message-loader" v-if="item.loading === 'load'">
+                                            <loading></loading>
+                                        </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                    </div>
+                                </div>
+                                <!-- 図 -->
+                                <div class="calcStartup__graph" v-if="graph === true">
+                                    <div class="calcStartup__bestGraph">
+                                        <div class="calcStartup__bestIcon" v-if="bestIcon === true"></div>
+                                        <div class="calcStartup__bestImg" v-if="bestImg === true"></div>
+                                    </div>
+                                    <div class="calcStartup__cheapestGraph">
+                                        <div class="calcStartup__cheapestIcon" v-if="cheapestIcon === true"></div>
+                                        <div class="calcStartup__cheapestImg" v-if="cheapestImg === true"></div>
+                                    </div>
+                                </div>
+                                <!-- ユーザーメッセージ -->
+                                <div class="chatMessage-User" v-if="item.type === 'user'">
+                                    <div class="icon-image hidden">
+                                    </div>
+                                    <div class="chatMessage-text">
+                                        <div class="message-loader" v-if="item.loading === 'load'">
+                                            <loading></loading>
+                                        </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                        <div class="chatMessage-text__already-read afterRead" v-if="item.read !== 'no'">既読</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="chatMessage-Advisor">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text" v-if="AdvisorMsgShow2 === true">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView1}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow3 === true"> どちらがご希望に近いですか？ </div>
-                                </div>
-                            </div>
+                            <!-- 質問項目 -->
                             <div class="chatMessage-Question calculation done" v-bind:class="{questionView}" v-if="QuestionShow === true">
                                 <input name="conversion[Input_items_2]" type="hidden" value="どちらがご希望に近いですか？:ざっくり計算">
                                 <div class="chatMessage-Question__inner">
@@ -67,89 +95,6 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow1 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow2 === true">ざっくり計算です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow3 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow4 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow5 === true">しっかり計算です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow6 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow4 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView3}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow5 === true"> かしこまりました。 </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text" v-if="AdvisorMsgShow6 === true">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView4}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow7 === true"> データをもとに、あなたの相場をざっくり計算します。 </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text" v-if="AdvisorMsgShow8 === true">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView5}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow9 === true"> 一戸建てのお風呂リフォーム相場は </div>
-                                </div>
-                            </div>
-                            <!-- 図 -->
-                            <div class="calcStartup__graph" v-if="graph === true">
-                                <div class="calcStartup__bestGraph">
-                                    <div class="calcStartup__bestIcon" v-if="bestIcon === true"></div>
-                                    <div class="calcStartup__bestImg" v-if="bestImg === true"></div>
-                                </div>
-                                <div class="calcStartup__cheapestGraph">
-                                    <div class="calcStartup__cheapestIcon" v-if="cheapestIcon === true"></div>
-                                    <div class="calcStartup__cheapestImg" v-if="cheapestImg === true"></div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow10 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView6}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow11 === true"> あなたの費用を、データをもとにしっかり計算します。 </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow12 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView7}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow13 === true"> 希望されるお風呂は、どのような形式ですか？ </div>
-                                </div>
-                            </div>
                             <div class="chatMessage-Question">
                                 <div class="chatMessage-Question__inner" v-if="QuestionShow2 === true">
                                     <div class="chatMessage-Question__buttonUnit">
@@ -164,49 +109,6 @@
                                         <input name="handle[Input_items_3]" id="Input_items_3_3" type="radio" value="わからない" class="opti-hopeType_all opti-hopeType_3" data-ga-event="ga_event_hopeType_3" @click="notKnow1">
                                         <label for="Input_items_3_3" class="chatMessage-Question__button" v-bind:class="{colorChange5},{colorChange6}">わからない</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow7 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView2}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow8 === true">ユニットバスです</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow9 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow10 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView2}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow11 === true">タイル貼りです</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow12 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow13 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView2}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow14 === true">わからないです</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow15 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow14 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView8}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow15 === true"> 希望されるお風呂の大きさは、どのくらいですか？ </div>
                                 </div>
                             </div>
                             <div class="chatMessage-Question">
@@ -225,69 +127,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow16 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView3}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow17 === true">2畳未満です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow18 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow19 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView3}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow20 === true">2畳以上です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow21 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow22 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView3}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow23 === true">わからないです</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow24 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow16 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView9}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow17 === true"> 浴槽まわりの希望をお伺いします。 </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow18 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView10}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow19 === true"> 湯船につかる頻度が多い場合は、浴槽の形が重要です。 </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow20 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView11}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow21 === true"> 浴槽の形にこだわりはありますか？ </div>
-                                </div>
-                            </div>
                             <div class="chatMessage-Question">
                                 <div class="chatMessage-Question__inner" v-if="QuestionShow4 === true">
                                     <div class="chatMessage-Question__buttonUnit">
@@ -304,50 +143,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow25 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView4}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow26 === true">広さ重視です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow27 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow28 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView4}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow29 === true">節水重視です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow30 === true">既読</div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-User" v-if="UserMsgShow31 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView4}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow32 === true">特になしです</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow33 === true">既読</div>
-                                </div>
-                            </div>
                             <!-- 都道府県選択 -->
-                            <div class="chatMessage-Advisor hasImage" v-if="AdvisorMsgShow100 === true">
-                                <div class="icon-image">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{AdvloadingView100}">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="AdvisorMsgShow101 === true"> 物件の場所はどちらになりますか？ </div>
-                                </div>
-                            </div>
+                            <!-- 地方選択 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow100 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -357,6 +154,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 各都道府県選択 -->
+                            <!-- 北海道・東北 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow101 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -366,6 +165,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 関東 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow102 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -375,6 +175,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 北陸・甲信越 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow103 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -384,6 +185,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 東海 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow104 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -393,6 +195,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 関西 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow105 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -402,6 +205,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 中国 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow106 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -411,6 +215,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 四国 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow107 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -420,6 +225,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 九州・沖縄 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow108 === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
@@ -429,6 +235,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 都道府県選択回答専用 -->
                             <div class="chatMessage-User" v-if="UserMsgShow100 === true">
                                 <div class="icon-image hidden">
                                 </div>

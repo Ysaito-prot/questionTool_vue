@@ -36,7 +36,6 @@ img {
   max-width: 70%;
 }
 .chatContainer {
-  margin-top: 30px;
   padding-top: 30px;
 }
 .chatMessage-Advisor, .chatMessage-User {
@@ -80,7 +79,7 @@ img {
   top: 12px;
   transform: rotate(32deg);
 }
-.chatMessage-Advisor+.chatMessage-Advisor.hasImage {
+.chatMessage-Advisor.hasImage {
   margin-top: 30px;
 }
 .icon-image {
@@ -163,15 +162,16 @@ img {
   margin: 50px auto 10px;
   width: 320px;
   height: 300px;
+  display: none;
+}
+.chatchat:nth-of-type(5) .calcStartup__graph {
+  display: flex;
 }
 .calcStartup__bestGraph, .calcStartup__cheapestGraph {
   align-content: flex-end;
-  /* bottom: -50px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* 非表示に関する */
-  /* opacity: 0; */
   position: relative;
   width: 44%;
 }
@@ -509,59 +509,11 @@ ul, li {
   display: none;
 }
 /* アドバイザーローディング */
-.AdvloadingView {
-  display: none;
-}
-.AdvloadingView1 {
-  display: none;
-}
-.AdvloadingView2 {
-  display: none;
-}
-.AdvloadingView3 {
-  display: none;
-}
-.AdvloadingView4 {
-  display: none;
-}
-.AdvloadingView5 {
-  display: none;
-}
-.AdvloadingView6 {
-  display: none;
-}
-.AdvloadingView7 {
-  display: none;
-}
-.AdvloadingView8 {
-  display: none;
-}
-.AdvloadingView9 {
-  display: none;
-}
-.AdvloadingView10 {
-  display: none;
-}
-.AdvloadingView11 {
-  display: none;
-}
-.AdvloadingView100 {
+.AdvloadingView-active{
   display: none;
 }
 
 /* ユーザーローディング */
-.UserloadingView {
-  display: none;
-}
-.UserloadingView2 {
-  display: none;
-}
-.UserloadingView3 {
-  display: none;
-}
-.UserloadingView4 {
-  display: none;
-}
 .UserloadingView100 {
   display: none;
 }

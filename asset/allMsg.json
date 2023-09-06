@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "msg": "２つの方法で相場を計算することができます。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 2,
+    "msg": "どちらがご希望に近いですか？",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 3,
+    "msg": "ざっくり計算です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 4,
+    "msg": "しっかり計算です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 5,
+    "msg": "かしこまりました。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 6,
+    "msg": "データをもとに、あなたの相場をざっくり計算します。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 7,
+    "msg": "一戸建てのお風呂リフォーム相場は",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 8,
+    "msg": "あなたの費用を、データをもとにしっかり計算します。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 9,
+    "msg": "希望されるお風呂は、どのような形式ですか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 10,
+    "msg": "ユニットバスです",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 11,
+    "msg": "タイル貼りです",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 12,
+    "msg": "わからないです",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 13,
+    "msg": "希望されるお風呂の大きさは、どのくらいですか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 14,
+    "msg": "2畳未満です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 15,
+    "msg": "2畳以上です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 16,
+    "msg": "わからないです",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 17,
+    "msg": "浴槽まわりの希望をお伺いします。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 18,
+    "msg": "湯船につかる頻度が多い場合は、浴槽の形が重要です。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 19,
+    "msg": "浴槽の形にこだわりはありますか？",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 20,
+    "msg": "広さ重視です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 21,
+    "msg": "節水重視です",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 22,
+    "msg": "特になしです",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 23,
+    "msg": "物件の場所はどちらになりますか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  }
+]

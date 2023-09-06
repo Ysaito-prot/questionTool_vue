@@ -1,0 +1,34 @@
+[
+  {
+    "item": "北海道・東北",
+    "kind": "Input_items_20_1"
+  },
+  {
+    "item": "関東",
+    "kind": "Input_items_20_2"
+  },
+  {
+    "item": "北陸・甲信越",
+    "kind": "Input_items_20_3"
+  },
+  {
+    "item": "東海",
+    "kind": "Input_items_20_4"
+  },
+  {
+    "item": "関西",
+    "kind": "Input_items_20_5"
+  },
+  {
+    "item": "中国",
+    "kind": "Input_items_20_6"
+  },
+  {
+    "item": "四国",
+    "kind": "Input_items_20_7"
+  },
+  {
+    "item": "九州・沖縄",
+    "kind": "Input_items_20_8"
+  }
+]
