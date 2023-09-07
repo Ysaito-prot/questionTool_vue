@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "msg": "ユニットバス",
+    "kind": "Input_items_0"
+  },
+  {
+    "id": 2,
+    "msg": "タイル貼り",
+    "kind": "Input_items_1"
+  },
+  {
+    "id": 3,
+    "msg": "わからない",
+    "kind": "Input_items_2"
+  },
+  {
+    "id": 4,
+    "msg": "2畳未満",
+    "kind": "Input_items_3"
+  },
+  {
+    "id": 5,
+    "msg": "2畳以上",
+    "kind": "Input_items_4"
+  },
+  {
+    "id": 6,
+    "msg": "広さ重視",
+    "kind": "Input_items_5"
+  },
+  {
+    "id": 7,
+    "msg": "節水重視",
+    "kind": "Input_items_6"
+  },
+  {
+    "id": 8,
+    "msg": "特になし",
+    "kind": "Input_items_7"
+  },
+  {
+    "id": 9,
+    "msg": "わからない",
+    "kind": "Input_items_2"
+  },
+  {
+    "id": 11,
+    "msg": "はい",
+    "kind": "Input_items_10"
+  },
+  {
+    "id": 12,
+    "msg": "いいえ",
+    "kind": "Input_items_11"
+  }
+]

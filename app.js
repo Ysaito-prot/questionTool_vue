@@ -2,45 +2,24 @@ Vue.createApp({
   data: function () {
     return {
       QuestionShow: false,
-      QuestionShow2: false,
-      QuestionShow3: false,
-      QuestionShow4: false,
       UserMsgShow100: false,
       UserMsgShow101: false,
-      UserMsgShow102: false,
-      UserloadingView100: false,
-      calcStartupGraph: false,
+      UserloadingView100: true,
       graph: false,
       bestIcon: false,
       bestImg: false,
       cheapestIcon: false,
       cheapestImg: false,
-      questionView: false,
-      scrollY: 0,
       colorChange01: false,
       colorChange02: false,
-      colorChange1: false,
-      colorChange2: false,
-      colorChange3: false,
-      colorChange4: false,
-      colorChange5: false,
-      colorChange6: false,
       colorChange100: false,
-      QuestionShow100: false,
-      QuestionShow101: false,
-      QuestionShow102: false,
-      QuestionShow103: false,
-      QuestionShow104: false,
-      QuestionShow105: false,
-      QuestionShow106: false,
-      QuestionShow107: false,
-      QuestionShow108: false,
       allMsg: [],
       allMsg2: [],
       activeItem: null,
       answer: "",
-      answer1: "",
+      questionAnswer: "",
       areas: [],
+      newAreas: [],
       tohoku: [],
       kanto: [],
       hokuriku: [],
@@ -49,6 +28,10 @@ Vue.createApp({
       tyubu: [],
       sikoku: [],
       kyusyu: [],
+      question: [],
+      questionUp: [],
+      questionUpView: false,
+      todohukenQuestion: false,
     };
   },
   // 画面が読み込まれたときに1度だけ発動
@@ -83,21 +66,15 @@ Vue.createApp({
     const res9 = await fetch("./asset/kyusyu.json");
     const users9 = await res9.json();
     this.kyusyu = users9;
+    const res10 = await fetch("./asset/question.json");
+    const users10 = await res10.json();
+    this.question = users10;
 
     await this.wait(1000);
-    this.msgOut(this.allMsg[0]);
-    await this.wait(1000);
-    delete this.allMsg[0]["loading"];
-    await this.wait(1000);
-    this.msgOut(this.allMsg[1]);
-    await this.wait(1000);
-    delete this.allMsg[1]["loading"];
-    await this.wait(1000);
+    this.advMsgIn(this.allMsg[0], this.allMsg[1]);
+    await this.wait(4000);
     this.QuestionShow = true;
-    window.scrollTo({
-      top: 50,
-      behavior: "smooth",
-    });
+    this.scroll(50);
   },
   methods: {
     wait: function (time) {
@@ -108,60 +85,30 @@ Vue.createApp({
     showFlash: async function () {
       this.colorChange01 = true;
       await this.wait(1000);
-      this.questionView = !this.questionView;
+      this.QuestionShow = false;
       await this.wait(1000);
-      this.msgOut(this.allMsg[2]);
-      await this.wait(500);
-      delete this.allMsg[2]["loading"];
-      await this.wait(500);
-      delete this.allMsg[2]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[4]);
-      await this.wait(1000);
-      delete this.allMsg[4]["loading"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[5]);
-      await this.wait(1000);
-      delete this.allMsg[5]["loading"];
-      await this.wait(1000);
-      window.scrollTo({
-        top: 300,
-        behavior: "smooth",
-      });
+      this.userMsgIn(this.allMsg[2]);
+      await this.wait(2000);
+      this.advMsgIn(this.allMsg[4], this.allMsg[5]);
+      await this.wait(4000);
+      this.scroll(300);
       // これ以降はしっかり計算と同じ記述
-      this.msgOut(this.allMsg[8]);
-      await this.wait(1000);
-      delete this.allMsg[8]["loading"];
-      await this.wait(1000);
-      this.QuestionShow2 = true;
-      window.scrollTo({
-        top: 530,
-        behavior: "smooth",
-      });
+      this.advMsgIn(this.allMsg[8]);
+      await this.wait(2000);
+      this.questionMsgOut(this.question[0], this.question[1], this.question[2]);
+      this.questionUpView = true;
+      this.scroll(470);
     },
     showFlash2: async function () {
       this.colorChange02 = true;
       await this.wait(1000);
-      this.questionView = !this.questionView;
+      this.QuestionShow = false;
       await this.wait(1000);
-      this.msgOut(this.allMsg[3]);
-      await this.wait(500);
-      delete this.allMsg[3]["loading"];
-      await this.wait(500);
-      delete this.allMsg[3]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[4]);
-      await this.wait(1000);
-      delete this.allMsg[4]["loading"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[6]);
-      await this.wait(1000);
-      delete this.allMsg[6]["loading"];
-      await this.wait(1000);
-      window.scrollTo({
-        top: 290,
-        behavior: "smooth",
-      });
+      this.userMsgIn(this.allMsg[3]);
+      await this.wait(2000);
+      this.advMsgIn(this.allMsg[4], this.allMsg[6]);
+      await this.wait(4000);
+      this.scroll(290);
       // グラフ表示
       await this.wait(1000);
       this.graph = true;
@@ -172,398 +119,16 @@ Vue.createApp({
       this.cheapestImg = true;
       await this.wait(1000);
       this.cheapestIcon = true;
-      // これ以降はざっくり計算と同じ記述
       await this.wait(2000);
-      this.msgOut(this.allMsg[7]);
-      await this.wait(1000);
-      delete this.allMsg[7]["loading"];
-      await this.wait(1000);
-      window.scrollTo({
-        top: 800,
-        behavior: "smooth",
-      });
-      await this.wait(1000);
-      this.msgOut(this.allMsg[8]);
-      await this.wait(1000);
-      delete this.allMsg[8]["loading"];
-      await this.wait(1000);
-      window.scrollTo({
-        top: 920,
-        behavior: "smooth",
-      });
-      this.QuestionShow2 = true;
-    },
-    unitBus: async function () {
-      this.colorChange1 = true;
-      this.colorChange4 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow2 = false;
-      this.colorChange1 = false;
-      this.colorChange4 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[9]);
-      await this.wait(500);
-      delete this.allMsg[9]["loading"];
-      await this.wait(500);
-      delete this.allMsg[9]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[12]);
-      await this.wait(1000);
-      delete this.allMsg[12]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 720,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1100,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow3 = true;
-    },
-    tile: async function () {
-      this.colorChange2 = true;
-      this.colorChange3 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow2 = false;
-      this.colorChange2 = false;
-      this.colorChange3 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[10]);
-      await this.wait(500);
-      delete this.allMsg[10]["loading"];
-      await this.wait(500);
-      delete this.allMsg[10]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[12]);
-      await this.wait(1000);
-      delete this.allMsg[12]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 720,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1100,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow3 = true;
-    },
-    notKnow1: async function () {
-      this.colorChange2 = true;
-      this.colorChange4 = true;
-      this.colorChange5 = true;
-      await this.wait(1000);
-      this.QuestionShow2 = false;
-      this.colorChange2 = false;
-      this.colorChange4 = false;
-      this.colorChange5 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[11]);
-      await this.wait(500);
-      delete this.allMsg[11]["loading"];
-      await this.wait(500);
-      delete this.allMsg[11]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[12]);
-      await this.wait(1000);
-      delete this.allMsg[12]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 720,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1100,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow3 = true;
-    },
-    insufficient: async function () {
-      this.colorChange1 = true;
-      this.colorChange4 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow3 = false;
-      this.colorChange1 = false;
-      this.colorChange4 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[13]);
-      await this.wait(500);
-      delete this.allMsg[13]["loading"];
-      await this.wait(500);
-      delete this.allMsg[13]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[16]);
-      await this.wait(1000);
-      delete this.allMsg[16]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 900,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1300,
-          behavior: "smooth",
-        });
-      }
-      await this.wait(1000);
-      this.msgOut(this.allMsg[17]);
-      await this.wait(1000);
-      delete this.allMsg[17]["loading"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[18]);
-      await this.wait(1000);
-      delete this.allMsg[18]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 1030,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1430,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow4 = true;
-    },
-    more: async function () {
-      this.colorChange2 = true;
-      this.colorChange3 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow3 = false;
-      this.colorChange2 = false;
-      this.colorChange3 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[14]);
-      await this.wait(500);
-      delete this.allMsg[14]["loading"];
-      await this.wait(500);
-      delete this.allMsg[14]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[16]);
-      await this.wait(1000);
-      delete this.allMsg[16]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 900,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1300,
-          behavior: "smooth",
-        });
-      }
-      await this.wait(1000);
-      this.msgOut(this.allMsg[17]);
-      await this.wait(1000);
-      delete this.allMsg[17]["loading"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[18]);
-      await this.wait(1000);
-      delete this.allMsg[18]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 980,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1430,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow4 = true;
-    },
-    notKnow2: async function () {
-      this.colorChange2 = true;
-      this.colorChange4 = true;
-      this.colorChange5 = true;
-      await this.wait(1000);
-      this.QuestionShow3 = false;
-      this.colorChange2 = false;
-      this.colorChange4 = false;
-      this.colorChange5 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[15]);
-      await this.wait(500);
-      delete this.allMsg[15]["loading"];
-      await this.wait(500);
-      delete this.allMsg[15]["read"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[16]);
-      await this.wait(1000);
-      delete this.allMsg[16]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 900,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1300,
-          behavior: "smooth",
-        });
-      }
-      await this.wait(1000);
-      this.msgOut(this.allMsg[17]);
-      await this.wait(1000);
-      delete this.allMsg[17]["loading"];
-      await this.wait(1000);
-      this.msgOut(this.allMsg[18]);
-      await this.wait(1000);
-      delete this.allMsg[18]["loading"];
-      await this.wait(1000);
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 980,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1430,
-          behavior: "smooth",
-        });
-      }
-      this.QuestionShow4 = true;
-    },
-    Breadth: async function () {
-      this.colorChange1 = true;
-      this.colorChange4 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow4 = false;
-      this.colorChange1 = false;
-      this.colorChange4 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[19]);
-      await this.wait(500);
-      delete this.allMsg[19]["loading"];
-      await this.wait(500);
-      delete this.allMsg[19]["read"];
-      // 都道府県選択へ
-      await this.wait(1000);
-      this.msgOut(this.allMsg[22]);
-      await this.wait(1000);
-      delete this.allMsg[22]["loading"];
-      await this.wait(1000);
-      this.QuestionShow100 = true;
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 1280,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1690,
-          behavior: "smooth",
-        });
-      }
-    },
-    save: async function () {
-      this.colorChange2 = true;
-      this.colorChange3 = true;
-      this.colorChange6 = true;
-      await this.wait(1000);
-      this.QuestionShow4 = false;
-      this.colorChange2 = false;
-      this.colorChange3 = false;
-      this.colorChange6 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[20]);
-      await this.wait(500);
-      delete this.allMsg[20]["loading"];
-      await this.wait(500);
-      delete this.allMsg[20]["read"];
-      // 都道府県選択へ
-      await this.wait(1000);
-      this.msgOut(this.allMsg[22]);
-      await this.wait(1000);
-      delete this.allMsg[22]["loading"];
-      await this.wait(1000);
-      this.QuestionShow100 = true;
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 1280,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1690,
-          behavior: "smooth",
-        });
-      }
-    },
-    nothing: async function () {
-      this.colorChange2 = true;
-      this.colorChange4 = true;
-      this.colorChange5 = true;
-      await this.wait(1000);
-      this.QuestionShow4 = false;
-      this.colorChange2 = false;
-      this.colorChange4 = false;
-      this.colorChange5 = false;
-      await this.wait(1000);
-      this.msgOut(this.allMsg[21]);
-      await this.wait(500);
-      delete this.allMsg[21]["loading"];
-      await this.wait(500);
-      delete this.allMsg[21]["read"];
-      // 都道府県選択へ
-      await this.wait(1000);
-      this.msgOut(this.allMsg[22]);
-      await this.wait(1000);
-      delete this.allMsg[22]["loading"];
-      await this.wait(1000);
-      this.QuestionShow100 = true;
-      if (this.colorChange01 === true) {
-        window.scrollTo({
-          top: 1280,
-          behavior: "smooth",
-        });
-      }
-      if (this.colorChange02 === true) {
-        window.scrollTo({
-          top: 1690,
-          behavior: "smooth",
-        });
-      }
+      this.advMsgIn(this.allMsg[7]);
+      this.scroll(800);
+      await this.wait(2000);
+      // これ以降はざっくり計算と同じ記述
+      this.advMsgIn(this.allMsg[8]);
+      await this.wait(2000);
+      this.questionMsgOut(this.question[0], this.question[1], this.question[2]);
+      this.questionUpView = true;
+      this.scroll(920);
     },
     onActive(item) {
       this.colorChange100 = true;
@@ -576,6 +141,43 @@ Vue.createApp({
       this.allMsg2.push(x);
       return this.allMsg2;
     },
+    questionMsgOut: function (x, y, z = undefined) {
+      if (z === undefined) {
+        this.questionUp.push(x, y);
+      }
+      if (z !== undefined) {
+        this.questionUp.push(x, y, z);
+      }
+      return this.questionUp;
+    },
+    todohukenMsgOut: function (x) {
+      this.newAreas.push(x);
+      return this.newAreas;
+    },
+    scroll: function (x) {
+      window.scrollTo({
+        top: x,
+        behavior: "smooth",
+      });
+    },
+    advMsgIn: async function (x, y = undefined) {
+      this.msgOut(x);
+      await this.wait(1000);
+      delete x["loading"];
+      if (y !== undefined) {
+        await this.wait(1000);
+        this.msgOut(y);
+        await this.wait(1000);
+        delete y["loading"];
+      }
+    },
+    userMsgIn: async function (x) {
+      this.msgOut(x);
+      await this.wait(500);
+      delete x["loading"];
+      await this.wait(500);
+      delete x["read"];
+    },
   },
   watch: {
     // ターゲットが変化したとき呼び出されるハンドラ
@@ -583,69 +185,187 @@ Vue.createApp({
       if (newStock === "北海道・東北") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow101 = true;
+        this.newAreas = this.tohoku;
+        this.answer = "a";
       }
       if (newStock === "関東") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow102 = true;
+        this.newAreas = this.kanto;
+        this.answer = "a";
       }
       if (newStock === "北陸・甲信越") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow103 = true;
+        this.newAreas = this.hokuriku;
+        this.answer = "a";
       }
       if (newStock === "東海") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow104 = true;
+        this.newAreas = this.tokai;
+        this.answer = "a";
       }
       if (newStock === "関西") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow105 = true;
+        this.newAreas = this.kansai;
+        this.answer = "a";
       }
       if (newStock === "中国") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow106 = true;
+        this.newAreas = this.tyubu;
+        this.answer = "a";
       }
       if (newStock === "四国") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow107 = true;
+        this.newAreas = this.sikoku;
+        this.answer = "a";
       }
       if (newStock === "九州・沖縄") {
         await this.wait(1000);
         this.colorChange100 = false;
-        this.QuestionShow100 = false;
-        this.QuestionShow108 = true;
+        this.newAreas = this.kyusyu;
+        this.answer = "a";
+      }
+      if (
+        newStock !== "a" &&
+        newStock !== "北海道・東北" &&
+        newStock !== "関東" &&
+        newStock !== "北陸・甲信越" &&
+        newStock !== "東海" &&
+        newStock !== "関西" &&
+        newStock !== "中国" &&
+        newStock !== "四国" &&
+        newStock !== "九州・沖縄"
+      ) {
+        await this.wait(1000);
+        this.colorChange100 = false;
+        this.todohukenQuestion = false;
+        await this.wait(500);
+        this.UserMsgShow100 = true;
+        await this.wait(500);
+        this.UserloadingView100 = false;
+        await this.wait(500);
+        this.UserMsgShow101 = true;
       }
     },
-    answer1: async function (newStock, oldStock) {
+    questionAnswer: async function (newStock, oldStock) {
       await this.wait(1000);
-      this.QuestionShow101 = false;
-      this.QuestionShow102 = false;
-      this.QuestionShow103 = false;
-      this.QuestionShow104 = false;
-      this.QuestionShow105 = false;
-      this.QuestionShow106 = false;
-      this.QuestionShow107 = false;
-      this.QuestionShow108 = false;
-      await this.wait(500);
-      this.UserMsgShow100 = true;
-      await this.wait(500);
-      this.UserMsgShow101 = true;
-      this.UserloadingView100 = true;
-      await this.wait(500);
-      this.UserMsgShow102 = true;
+      this.questionUpView = false;
+      await this.wait(1000);
+      if (
+        this.questionAnswer === "ユニットバス" ||
+        this.questionAnswer === "タイル貼り" ||
+        (this.questionAnswer === "わからない" &&
+          this.questionUp[0].msg === "ユニットバス")
+      ) {
+        if (this.questionAnswer === "ユニットバス") {
+          this.userMsgIn(this.allMsg[9]);
+        }
+        if (this.questionAnswer === "タイル貼り") {
+          this.userMsgIn(this.allMsg[10]);
+        }
+        if (
+          this.questionAnswer === "わからない" &&
+          this.questionUp[0].msg === "ユニットバス"
+        ) {
+          this.userMsgIn(this.allMsg[11]);
+        }
+        await this.wait(2000);
+        this.questionAnswer = "";
+        this.advMsgIn(this.allMsg[12]);
+        await this.wait(2000);
+        if (this.colorChange01 === true) {
+          this.scroll(660);
+        }
+        if (this.colorChange02 === true) {
+          this.scroll(1100);
+        }
+        this.colorChange100 = false;
+        this.questionUp = [];
+        this.questionMsgOut(
+          this.question[3],
+          this.question[4],
+          this.question[8]
+        );
+        this.questionUpView = true;
+      }
+      if (
+        this.questionAnswer === "2畳未満" ||
+        this.questionAnswer === "2畳以上" ||
+        (this.questionAnswer === "わからない" &&
+          this.questionUp[0].msg === "2畳未満")
+      ) {
+        if (this.questionAnswer === "2畳未満") {
+          this.userMsgIn(this.allMsg[13]);
+        }
+        if (this.questionAnswer === "2畳以上") {
+          this.userMsgIn(this.allMsg[14]);
+        }
+        if (
+          this.questionAnswer === "わからない" &&
+          this.questionUp[0].msg === "2畳未満"
+        ) {
+          this.userMsgIn(this.allMsg[15]);
+        }
+        await this.wait(2000);
+        this.advMsgIn(this.allMsg[16]);
+        await this.wait(2000);
+        if (this.colorChange01 === true) {
+          this.scroll(850);
+        }
+        if (this.colorChange02 === true) {
+          this.scroll(1300);
+        }
+        await this.wait(1000);
+        this.advMsgIn(this.allMsg[17], this.allMsg[18]);
+        await this.wait(4000);
+        if (this.colorChange01 === true) {
+          this.scroll(980);
+        }
+        if (this.colorChange02 === true) {
+          this.scroll(1430);
+        }
+        this.colorChange100 = false;
+        this.questionUp = [];
+        this.questionMsgOut(
+          this.question[5],
+          this.question[6],
+          this.question[7]
+        );
+        this.questionUpView = true;
+      }
+      if (
+        this.questionAnswer === "広さ重視" ||
+        this.questionAnswer === "節水重視" ||
+        this.questionAnswer === "特になし"
+      ) {
+        if (this.questionAnswer === "広さ重視") {
+          this.userMsgIn(this.allMsg[19]);
+        }
+        if (this.questionAnswer === "節水重視") {
+          this.userMsgIn(this.allMsg[20]);
+        }
+        if (this.questionAnswer === "特になし") {
+          this.userMsgIn(this.allMsg[21]);
+        }
+        // 都道府県選択へ
+        await this.wait(2000);
+        this.advMsgIn(this.allMsg[22]);
+        await this.wait(2000);
+        this.colorChange100 = false;
+        this.newAreas = this.areas;
+        this.todohukenQuestion = true;
+        if (this.colorChange01 === true) {
+          this.scroll(1200);
+        }
+        if (this.colorChange02 === true) {
+          this.scroll(1690);
+        }
+      }
     },
   },
 })

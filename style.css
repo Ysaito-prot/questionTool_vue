@@ -462,36 +462,6 @@ ul, li {
   background-color: #0dbdbb;
   /* box-shadow:none */
 }
-.colorChange1 {
-  color: #fff;
-  background-color: #0dbdbb;
-  box-shadow:none
-}
- .colorChange2 {
-   background-color: rgb(188, 192, 192);
-   opacity:0.5;
-   box-shadow:none
-}
-.colorChange3 {
-    color: #fff;
-    background-color: #0dbdbb;
-    box-shadow:none
- }
- .colorChange4 {
-     background-color: rgb(188, 192, 192);
-     opacity:0.5;
-     box-shadow:none
- }
- .colorChange5 {
-      color: #fff;
-      background-color: #0dbdbb;
-      box-shadow:none
-}
-.colorChange6 {
-       background-color: rgb(188, 192, 192);
-       opacity:0.5;
-       box-shadow:none
-}    
 .colorChange100 {
   background-color: rgb(188, 192, 192);
        opacity:0.5;
@@ -504,17 +474,8 @@ ul, li {
   box-shadow:none
 }
 
-/* ローディングの表示非表示 */
-.questionView {
-  display: none;
-}
-/* アドバイザーローディング */
+/* ローディング */
 .AdvloadingView-active{
-  display: none;
-}
-
-/* ユーザーローディング */
-.UserloadingView100 {
   display: none;
 }
 

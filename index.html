@@ -35,7 +35,7 @@
                                         <div class="message-loader" v-if="item.loading === 'load'">
                                             <loading></loading>
                                         </div>
-                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg }} </div>
                                     </div>
                                 </div>
                                 <!-- アドバイザーメッセージ(アイコンなし) -->
@@ -46,7 +46,7 @@
                                         <div class="message-loader" v-if="item.loading === 'load'">
                                             <loading></loading>
                                         </div>
-                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg }} </div>
                                     </div>
                                 </div>
                                 <!-- 図 -->
@@ -68,13 +68,13 @@
                                         <div class="message-loader" v-if="item.loading === 'load'">
                                             <loading></loading>
                                         </div>
-                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg}} </div>
+                                        <div class="chatMessage-text-title" v-if="item.loading !== 'load'"> {{ item.msg }} </div>
                                         <div class="chatMessage-text__already-read afterRead" v-if="item.read !== 'no'">既読</div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 質問項目 -->
-                            <div class="chatMessage-Question calculation done" v-bind:class="{questionView}" v-if="QuestionShow === true">
+                            <!-- 一番最初の選択項目 -->
+                            <div class="chatMessage-Question calculation done" v-if="QuestionShow === true">
                                 <input name="conversion[Input_items_2]" type="hidden" value="どちらがご希望に近いですか？:ざっくり計算">
                                 <div class="chatMessage-Question__inner">
                                     <button class="calcTypeSelect__buttonUnit" v-bind:class="{colorChange01}" type="button" @click="showFlash">
@@ -95,142 +95,21 @@
                                     </button>
                                 </div>
                             </div>
+                            <!-- 選択項目出力 -->
                             <div class="chatMessage-Question">
-                                <div class="chatMessage-Question__inner" v-if="QuestionShow2 === true">
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_1" type="radio" value="ユニットバス" class="opti-hopeType_all opti-hopeType_1" data-ga-event="ga_event_hopeType_1" @click="unitBus">
-                                        <label for="Input_items_3_1" class="chatMessage-Question__button" v-bind:class="{colorChange1},{colorChange2}">ユニットバス</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_2" type="radio" value="タイル貼り" class="opti-hopeType_all opti-hopeType_2" data-ga-event="ga_event_hopeType_2" @click="tile">
-                                        <label for="Input_items_3_2" class="chatMessage-Question__button" v-bind:class="{colorChange3},{colorChange4}">タイル貼り</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_3" type="radio" value="わからない" class="opti-hopeType_all opti-hopeType_3" data-ga-event="ga_event_hopeType_3" @click="notKnow1">
-                                        <label for="Input_items_3_3" class="chatMessage-Question__button" v-bind:class="{colorChange5},{colorChange6}">わからない</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Question">
-                                <div class="chatMessage-Question__inner" v-if="QuestionShow3 === true">
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_4" type="radio" value="2畳未満" class="opti-hopeType_all opti-hopeType_4" data-ga-event="ga_event_hopeType_4" @click="insufficient">
-                                        <label for="Input_items_3_4" class="chatMessage-Question__button" v-bind:class="{colorChange1},{colorChange2}">2畳未満</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_5" type="radio" value="2畳以上" class="opti-hopeType_all opti-hopeType_5" data-ga-event="ga_event_hopeType_5" @click="more">
-                                        <label for="Input_items_3_5" class="chatMessage-Question__button" v-bind:class="{colorChange3},{colorChange4}">2畳以上</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_3]" id="Input_items_3_3" type="radio" value="わからない" class="opti-hopeType_all opti-hopeType_3" data-ga-event="ga_event_hopeType_3" @click="notKnow2">
-                                        <label for="Input_items_3_3" class="chatMessage-Question__button" v-bind:class="{colorChange5},{colorChange6}">わからない</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chatMessage-Question">
-                                <div class="chatMessage-Question__inner" v-if="QuestionShow4 === true">
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_42]" id="Input_items_42_1" type="radio" value="広さ重視" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_1" data-ga-event="ga_event_contractorAlreadyDecided_1" @click="Breadth">
-                                        <label for="Input_items_42_1" class="chatMessage-Question__button" v-bind:class="{colorChange1},{colorChange2}">広さ重視</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_42]" id="Input_items_42_2" type="radio" value="節水重視" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_2" data-ga-event="ga_event_contractorAlreadyDecided_2" @click="save">
-                                        <label for="Input_items_42_2" class="chatMessage-Question__button" v-bind:class="{colorChange3},{colorChange4}">節水重視</label>
-                                    </div>
-                                    <div class="chatMessage-Question__buttonUnit">
-                                        <input name="handle[Input_items_42]" id="Input_items_42_3" type="radio" value="特になし" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_3" data-ga-event="ga_event_contractorAlreadyDecided_3" @click="nothing">
-                                        <label for="Input_items_42_3" class="chatMessage-Question__button" v-bind:class="{colorChange5},{colorChange6}">特になし</label>
+                                <div class="chatMessage-Question__inner" v-if="questionUpView === true">
+                                    <div class="chatMessage-Question__buttonUnit" v-for="item in questionUp">
+                                        <input name="handle[Input_items_42]" v-bind:id="item.kind" type="radio" v-model="questionAnswer" v-bind:value="item.msg" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_1" data-ga-event="ga_event_contractorAlreadyDecided_1">
+                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.msg }}</label>
                                     </div>
                                 </div>
                             </div>
                             <!-- 都道府県選択 -->
-                            <!-- 地方選択 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow100 === true">
+                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="todohukenQuestion === true">
                                 <input name="conversion[Input_items_20]" type="hidden" value>
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in areas">
+                                    <div class="chatMessage-Question__buttonUnit" v-for="item in newAreas">
                                         <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 各都道府県選択 -->
-                            <!-- 北海道・東北 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow101 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in tohoku">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 関東 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow102 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in kanto">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 北陸・甲信越 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow103 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in hokuriku">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 東海 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow104 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in tokai">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 関西 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow105 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in kansai">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 中国 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow106 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in tyubu">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 四国 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow107 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in sikoku">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 九州・沖縄 -->
-                            <div class="chatMessage-Question area" data-group="Input_items_20" v-if="QuestionShow108 === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
-                                <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
-                                    <div class="chatMessage-Question__buttonUnit" v-for="item in kyusyu">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer1" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
                                         <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
                                     </div>
                                 </div>
@@ -240,11 +119,11 @@
                                 <div class="icon-image hidden">
                                 </div>
                                 <div class="chatMessage-text">
-                                    <div class="message-loader" v-bind:class="{UserloadingView100}">
+                                    <div class="message-loader" v-if="UserloadingView100 === true">
                                         <loading></loading>
                                     </div>
-                                    <div class="chatMessage-text-title" v-if="UserMsgShow101 === true">{{ answer1 }}です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow102 === true">既読</div>
+                                    <div class="chatMessage-text-title" v-if="UserloadingView100 === false">{{ answer }}です</div>
+                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow101 === true">既読</div>
                                 </div>
                             </div>
                             <div class="form__Submit">

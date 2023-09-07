@@ -37,7 +37,7 @@
   {
     "id": 6,
     "msg": "データをもとに、あなたの相場をざっくり計算します。",
-    "type": "adv",
+    "type": "advNoIcon",
     "loading": "load",
     "read": "no"
   },
