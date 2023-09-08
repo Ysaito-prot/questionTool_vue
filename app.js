@@ -2,21 +2,19 @@ Vue.createApp({
   data: function () {
     return {
       QuestionShow: false,
-      UserMsgShow100: false,
-      UserMsgShow101: false,
-      UserloadingView100: true,
       graph: false,
       bestIcon: false,
       bestImg: false,
       cheapestIcon: false,
       cheapestImg: false,
-      colorChange01: false,
-      colorChange02: false,
-      colorChange100: false,
+      zakkuriColorChange: false,
+      sikkariColorChange: false,
+      colorChangeGlay: false,
+      advMsg: [],
+      userMsg: [],
       allMsg: [],
-      allMsg2: [],
       activeItem: null,
-      answer: "",
+      todohukenAnswer: "",
       questionAnswer: "",
       areas: [],
       newAreas: [],
@@ -28,7 +26,6 @@ Vue.createApp({
       tyubu: [],
       sikoku: [],
       kyusyu: [],
-      question: [],
       questionUp: [],
       questionUpView: false,
       todohukenQuestion: false,
@@ -36,9 +33,9 @@ Vue.createApp({
   },
   // 画面が読み込まれたときに1度だけ発動
   created: async function () {
-    const res0 = await fetch("./asset/allMsg.json");
+    const res0 = await fetch("./asset/advMsg.json");
     const users0 = await res0.json();
-    this.allMsg = users0;
+    this.advMsg = users0;
     const res1 = await fetch("./asset/areas.json");
     const users1 = await res1.json();
     this.areas = users1;
@@ -66,12 +63,12 @@ Vue.createApp({
     const res9 = await fetch("./asset/kyusyu.json");
     const users9 = await res9.json();
     this.kyusyu = users9;
-    const res10 = await fetch("./asset/question.json");
+    const res10 = await fetch("./asset/userMsg.json");
     const users10 = await res10.json();
-    this.question = users10;
+    this.userMsg = users10;
 
     await this.wait(1000);
-    this.advMsgIn(this.allMsg[0], this.allMsg[1]);
+    this.advMsgIn(this.advMsg[0], this.advMsg[1]);
     await this.wait(4000);
     this.QuestionShow = true;
     this.scroll(50);
@@ -83,30 +80,29 @@ Vue.createApp({
       });
     },
     showFlash: async function () {
-      this.colorChange01 = true;
+      this.zakkuriColorChange = true;
       await this.wait(1000);
       this.QuestionShow = false;
       await this.wait(1000);
-      this.userMsgIn(this.allMsg[2]);
+      this.userMsgIn(this.userMsg[0], "ざっくり計算です");
       await this.wait(2000);
-      this.advMsgIn(this.allMsg[4], this.allMsg[5]);
+      this.advMsgIn(this.advMsg[2], this.advMsg[3]);
       await this.wait(4000);
       this.scroll(300);
       // これ以降はしっかり計算と同じ記述
-      this.advMsgIn(this.allMsg[8]);
+      this.advMsgIn(this.advMsg[6]);
       await this.wait(2000);
-      this.questionMsgOut(this.question[0], this.question[1], this.question[2]);
-      this.questionUpView = true;
+      this.questionMsgOut("ユニットバス", "タイル貼り", "わからない");
       this.scroll(470);
     },
     showFlash2: async function () {
-      this.colorChange02 = true;
+      this.sikkariColorChange = true;
       await this.wait(1000);
       this.QuestionShow = false;
       await this.wait(1000);
-      this.userMsgIn(this.allMsg[3]);
+      this.userMsgIn(this.userMsg[0], "しっかり計算です");
       await this.wait(2000);
-      this.advMsgIn(this.allMsg[4], this.allMsg[6]);
+      this.advMsgIn(this.advMsg[2], this.advMsg[4]);
       await this.wait(4000);
       this.scroll(290);
       // グラフ表示
@@ -120,26 +116,25 @@ Vue.createApp({
       await this.wait(1000);
       this.cheapestIcon = true;
       await this.wait(2000);
-      this.advMsgIn(this.allMsg[7]);
+      this.advMsgIn(this.advMsg[5]);
       this.scroll(800);
       await this.wait(2000);
       // これ以降はざっくり計算と同じ記述
-      this.advMsgIn(this.allMsg[8]);
+      this.advMsgIn(this.advMsg[6]);
       await this.wait(2000);
-      this.questionMsgOut(this.question[0], this.question[1], this.question[2]);
-      this.questionUpView = true;
+      this.questionMsgOut("ユニットバス", "タイル貼り", "わからない");
       this.scroll(920);
     },
     onActive(item) {
-      this.colorChange100 = true;
+      this.colorChangeGlay = true;
       this.activeItem = item;
     },
     loadingShow: function (item) {
       this.activeItem2 = item;
     },
     msgOut: function (x) {
-      this.allMsg2.push(x);
-      return this.allMsg2;
+      this.allMsg.push(x);
+      return this.allMsg;
     },
     questionMsgOut: function (x, y, z = undefined) {
       if (z === undefined) {
@@ -148,6 +143,8 @@ Vue.createApp({
       if (z !== undefined) {
         this.questionUp.push(x, y, z);
       }
+      // 選択肢表示
+      this.questionUpView = true;
       return this.questionUp;
     },
     todohukenMsgOut: function (x) {
@@ -171,7 +168,8 @@ Vue.createApp({
         delete y["loading"];
       }
     },
-    userMsgIn: async function (x) {
+    userMsgIn: async function (x, y) {
+      x.msg = y;
       this.msgOut(x);
       await this.wait(500);
       delete x["loading"];
@@ -181,54 +179,55 @@ Vue.createApp({
   },
   watch: {
     // ターゲットが変化したとき呼び出されるハンドラ
-    answer: async function (newStock, oldStock) {
+    // 都道府県選択の監視
+    todohukenAnswer: async function (newStock, oldStock) {
       if (newStock === "北海道・東北") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.tohoku;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "関東") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.kanto;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "北陸・甲信越") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.hokuriku;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "東海") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.tokai;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "関西") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.kansai;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "中国") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.tyubu;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "四国") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.sikoku;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (newStock === "九州・沖縄") {
         await this.wait(1000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.kyusyu;
-        this.answer = "a";
+        this.todohukenAnswer = "a";
       }
       if (
         newStock !== "a" &&
@@ -242,16 +241,12 @@ Vue.createApp({
         newStock !== "九州・沖縄"
       ) {
         await this.wait(1000);
-        this.colorChange100 = false;
         this.todohukenQuestion = false;
-        await this.wait(500);
-        this.UserMsgShow100 = true;
-        await this.wait(500);
-        this.UserloadingView100 = false;
-        await this.wait(500);
-        this.UserMsgShow101 = true;
+        await this.wait(1000);
+        this.userMsgIn(this.userMsg[4], this.todohukenAnswer + "です");
       }
     },
+    // その他の選択肢の監視
     questionAnswer: async function (newStock, oldStock) {
       await this.wait(1000);
       this.questionUpView = false;
@@ -260,109 +255,69 @@ Vue.createApp({
         this.questionAnswer === "ユニットバス" ||
         this.questionAnswer === "タイル貼り" ||
         (this.questionAnswer === "わからない" &&
-          this.questionUp[0].msg === "ユニットバス")
+          this.questionUp[0] === "ユニットバス")
       ) {
-        if (this.questionAnswer === "ユニットバス") {
-          this.userMsgIn(this.allMsg[9]);
-        }
-        if (this.questionAnswer === "タイル貼り") {
-          this.userMsgIn(this.allMsg[10]);
-        }
-        if (
-          this.questionAnswer === "わからない" &&
-          this.questionUp[0].msg === "ユニットバス"
-        ) {
-          this.userMsgIn(this.allMsg[11]);
-        }
+        this.userMsgIn(this.userMsg[1], this.questionAnswer + "です");
         await this.wait(2000);
         this.questionAnswer = "";
-        this.advMsgIn(this.allMsg[12]);
+        this.advMsgIn(this.advMsg[7]);
         await this.wait(2000);
-        if (this.colorChange01 === true) {
+        if (this.userMsg[0].msg === "ざっくり計算です") {
           this.scroll(660);
         }
-        if (this.colorChange02 === true) {
+        if (this.userMsg[0].msg === "しっかり計算です") {
           this.scroll(1100);
         }
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.questionUp = [];
-        this.questionMsgOut(
-          this.question[3],
-          this.question[4],
-          this.question[8]
-        );
-        this.questionUpView = true;
+        this.questionMsgOut("2畳未満", "2畳以上", " わからない");
       }
       if (
         this.questionAnswer === "2畳未満" ||
         this.questionAnswer === "2畳以上" ||
-        (this.questionAnswer === "わからない" &&
-          this.questionUp[0].msg === "2畳未満")
+        (this.questionAnswer === " わからない" &&
+          this.questionUp[0] === "2畳未満")
       ) {
-        if (this.questionAnswer === "2畳未満") {
-          this.userMsgIn(this.allMsg[13]);
-        }
-        if (this.questionAnswer === "2畳以上") {
-          this.userMsgIn(this.allMsg[14]);
-        }
-        if (
-          this.questionAnswer === "わからない" &&
-          this.questionUp[0].msg === "2畳未満"
-        ) {
-          this.userMsgIn(this.allMsg[15]);
-        }
+        this.userMsgIn(this.userMsg[2], this.questionAnswer + "です");
         await this.wait(2000);
-        this.advMsgIn(this.allMsg[16]);
+        this.advMsgIn(this.advMsg[8]);
         await this.wait(2000);
-        if (this.colorChange01 === true) {
+        if (this.userMsg[0].msg === "ざっくり計算です") {
           this.scroll(850);
         }
-        if (this.colorChange02 === true) {
+        if (this.userMsg[0].msg === "しっかり計算です") {
           this.scroll(1300);
         }
         await this.wait(1000);
-        this.advMsgIn(this.allMsg[17], this.allMsg[18]);
+        this.advMsgIn(this.advMsg[9], this.advMsg[10]);
         await this.wait(4000);
-        if (this.colorChange01 === true) {
+        if (this.userMsg[0].msg === "ざっくり計算です") {
           this.scroll(980);
         }
-        if (this.colorChange02 === true) {
+        if (this.userMsg[0].msg === "しっかり計算です") {
           this.scroll(1430);
         }
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.questionUp = [];
-        this.questionMsgOut(
-          this.question[5],
-          this.question[6],
-          this.question[7]
-        );
-        this.questionUpView = true;
+        this.questionMsgOut("広さ重視", "節水重視", "特になし");
       }
       if (
         this.questionAnswer === "広さ重視" ||
         this.questionAnswer === "節水重視" ||
         this.questionAnswer === "特になし"
       ) {
-        if (this.questionAnswer === "広さ重視") {
-          this.userMsgIn(this.allMsg[19]);
-        }
-        if (this.questionAnswer === "節水重視") {
-          this.userMsgIn(this.allMsg[20]);
-        }
-        if (this.questionAnswer === "特になし") {
-          this.userMsgIn(this.allMsg[21]);
-        }
+        this.userMsgIn(this.userMsg[3], this.questionAnswer + "です");
         // 都道府県選択へ
         await this.wait(2000);
-        this.advMsgIn(this.allMsg[22]);
+        this.advMsgIn(this.advMsg[11]);
         await this.wait(2000);
-        this.colorChange100 = false;
+        this.colorChangeGlay = false;
         this.newAreas = this.areas;
         this.todohukenQuestion = true;
-        if (this.colorChange01 === true) {
+        if (this.userMsg[0].msg === "ざっくり計算です") {
           this.scroll(1200);
         }
-        if (this.colorChange02 === true) {
+        if (this.userMsg[0].msg === "しっかり計算です") {
           this.scroll(1690);
         }
       }

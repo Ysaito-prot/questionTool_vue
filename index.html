@@ -26,7 +26,7 @@
                 <div class="form-contents">
                     <div class="form-last-field">
                         <div class="chatContainer">
-                            <div class="chatchat" v-for="item in allMsg2">
+                            <div class="chatchat" v-for="item in allMsg">
                                 <!-- アドバイザーメッセージ -->
                                 <div class="chatMessage-Advisor hasImage" v-if="item.type === 'adv'">
                                     <div class="icon-image">
@@ -73,11 +73,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 一番最初の選択項目 -->
+                            <!-- 一番最初の選択項目出力 -->
                             <div class="chatMessage-Question calculation done" v-if="QuestionShow === true">
-                                <input name="conversion[Input_items_2]" type="hidden" value="どちらがご希望に近いですか？:ざっくり計算">
                                 <div class="chatMessage-Question__inner">
-                                    <button class="calcTypeSelect__buttonUnit" v-bind:class="{colorChange01}" type="button" @click="showFlash">
+                                    <button class="calcTypeSelect__buttonUnit" v-bind:class="{zakkuriColorChange}" type="button" @click="showFlash">
                                         <div class="calcTypeSelect__buttonInner">
                                             <div class="calcTypeSelect__buttonLabel">
                                                 <div class="calcTypeSelect__buttonLabelText">ざっくり計算</div>
@@ -85,7 +84,7 @@
                                             </div>
                                         </div>
                                     </button>
-                                    <button class="calcTypeSelect__buttonUnit" v-bind:class="{colorChange02}" type="button" @click="showFlash2">
+                                    <button class="calcTypeSelect__buttonUnit" v-bind:class="{sikkariColorChange}" type="button" @click="showFlash2">
                                         <div class="calcTypeSelect__buttonInner">
                                             <div class="calcTypeSelect__buttonLabel">
                                                 <div class="calcTypeSelect__buttonLabelText">しっかり計算</div>
@@ -99,31 +98,19 @@
                             <div class="chatMessage-Question">
                                 <div class="chatMessage-Question__inner" v-if="questionUpView === true">
                                     <div class="chatMessage-Question__buttonUnit" v-for="item in questionUp">
-                                        <input name="handle[Input_items_42]" v-bind:id="item.kind" type="radio" v-model="questionAnswer" v-bind:value="item.msg" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_1" data-ga-event="ga_event_contractorAlreadyDecided_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.msg }}</label>
+                                        <input name="handle[Input_items_42]" v-bind:id="item" type="radio" v-model="questionAnswer" v-bind:value="item" class="opti-contractorAlreadyDecided_all opti-contractorAlreadyDecided_1" data-ga-event="ga_event_contractorAlreadyDecided_1">
+                                        <label v-bind:for="item" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChangeGlay}">{{ item }}</label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 都道府県選択 -->
+                            <!-- 都道府県選択項目出力 -->
                             <div class="chatMessage-Question area" data-group="Input_items_20" v-if="todohukenQuestion === true">
-                                <input name="conversion[Input_items_20]" type="hidden" value>
+                                <input name="conversion[Input_items_20]" type="hidden">
                                 <div class="chatMessage-Question__inner chatMessage-Question__inner--itemWrap">
                                     <div class="chatMessage-Question__buttonUnit" v-for="item in newAreas">
-                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="answer" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
-                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChange100}">{{ item.item }}</label>
+                                        <input name="handle[Input_items_20]" v-bind:id="item.kind" type="radio" v-model="todohukenAnswer" v-bind:value="item.item" class="opti-area_all opti-area_1" data-ga-event="ga_event_area_1">
+                                        <label v-bind:for="item.kind" v-on:click="onActive(item)" class="chatMessage-Question__button" v-bind:class="{'is-active': activeItem === item},{colorChangeGlay}">{{ item.item }}</label>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- 都道府県選択回答専用 -->
-                            <div class="chatMessage-User" v-if="UserMsgShow100 === true">
-                                <div class="icon-image hidden">
-                                </div>
-                                <div class="chatMessage-text">
-                                    <div class="message-loader" v-if="UserloadingView100 === true">
-                                        <loading></loading>
-                                    </div>
-                                    <div class="chatMessage-text-title" v-if="UserloadingView100 === false">{{ answer }}です</div>
-                                    <div class="chatMessage-text__already-read afterRead" v-if="UserMsgShow101 === true">既読</div>
                                 </div>
                             </div>
                             <div class="form__Submit">

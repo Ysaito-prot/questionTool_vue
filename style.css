@@ -8,7 +8,6 @@
   margin: 0 auto;
 }
 .form-last-field {
-  /* display: none; */
   margin: 0 auto;
   width: 880px;
 }
@@ -304,14 +303,12 @@ ul, li {
   background-color: rgba(107,203,228,0.5);
   display: flex;
   justify-content: space-between;
-  /* justify-content: space-around; */
   margin: 0 auto;
   padding: 20px 20px 16px;
   width: 95%;
 }
 .calcTypeSelect__buttonUnit {
   font-family: "Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-  /* height: 194px; */
   width: 47.9661016949%;
   align-items: center;
   background-color: #fff;
@@ -319,7 +316,7 @@ ul, li {
   border-radius: 8px;
   box-shadow: 0 4px 0 #0dbdbb;
   color: #000;
-  /* display: flex; */
+  display: flex;
   height: 190px;
   justify-content: center;
 }
@@ -452,17 +449,15 @@ ul, li {
 }
 
 /* 選択ボタン選択時の挙動 */
-.colorChange01 {
+.zakkuriColorChange {
   color: #fff;
   background-color: #0dbdbb;
-  /* box-shadow:none */
 }
-.colorChange02 {
+.sikkariColorChange {
   color: #fff;
   background-color: #0dbdbb;
-  /* box-shadow:none */
 }
-.colorChange100 {
+.colorChangeGlay {
   background-color: rgb(188, 192, 192);
        opacity:0.5;
        box-shadow:none
