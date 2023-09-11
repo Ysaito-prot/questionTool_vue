@@ -1,0 +1,37 @@
+[
+  {
+    "id": 0,
+    "msg": "計算方法の質問に対する回答が入ります",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 1,
+    "msg": "お風呂の形式の質問に対する回答が入ります",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 2,
+    "msg": "お風呂の大きさの質問に対する回答が入ります",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 3,
+    "msg": "浴槽の形の質問に対する回答が入ります",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 4,
+    "msg": "都道府県の質問に対する回答が入ります",
+    "type": "user",
+    "loading": "load",
+    "read": "no"
+  }
+]

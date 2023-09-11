@@ -1,0 +1,86 @@
+[
+  {
+    "id": 0,
+    "msg": "２つの方法で相場を計算することができます。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 1,
+    "msg": "どちらがご希望に近いですか？",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 2,
+    "msg": "かしこまりました。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 3,
+    "msg": "データをもとに、あなたの相場をざっくり計算します。",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 4,
+    "msg": "一戸建てのお風呂リフォーム相場は",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 5,
+    "msg": "あなたの費用を、データをもとにしっかり計算します。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 6,
+    "msg": "希望されるお風呂は、どのような形式ですか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 7,
+    "msg": "希望されるお風呂の大きさは、どのくらいですか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 8,
+    "msg": "浴槽まわりの希望をお伺いします。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 9,
+    "msg": "湯船につかる頻度が多い場合は、浴槽の形が重要です。",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 10,
+    "msg": "浴槽の形にこだわりはありますか？",
+    "type": "advNoIcon",
+    "loading": "load",
+    "read": "no"
+  },
+  {
+    "id": 11,
+    "msg": "物件の場所はどちらになりますか？",
+    "type": "adv",
+    "loading": "load",
+    "read": "no"
+  }
+]
