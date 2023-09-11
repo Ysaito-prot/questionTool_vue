@@ -26,9 +26,9 @@
                 <div class="form-contents">
                     <div class="form-last-field">
                         <div class="chatContainer">
-                            <div class="chatchat" v-for="item in allMsg">
+                            <div class="chatchat" v-for="item in allMsg" v-bind:class="['id-' + item.id]">
                                 <!-- アドバイザーメッセージ -->
-                                <div class="chatMessage-Advisor hasImage" v-if="item.type === 'adv'">
+                                <div id="1" class="chatMessage-Advisor hasImage" v-if="item.type === 'adv'">
                                     <div class="icon-image">
                                     </div>
                                     <div class="chatMessage-text">

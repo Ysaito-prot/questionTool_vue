@@ -71,7 +71,7 @@ Vue.createApp({
     this.advMsgIn(this.advMsg[0], this.advMsg[1]);
     await this.wait(4000);
     this.QuestionShow = true;
-    this.scroll(50);
+    this.ScrollWindow("id-0");
   },
   methods: {
     wait: function (time) {
@@ -88,12 +88,12 @@ Vue.createApp({
       await this.wait(2000);
       this.advMsgIn(this.advMsg[2], this.advMsg[3]);
       await this.wait(4000);
-      this.scroll(300);
+      this.ScrollWindow("id-2");
       // これ以降はしっかり計算と同じ記述
       this.advMsgIn(this.advMsg[6]);
       await this.wait(2000);
       this.questionMsgOut("ユニットバス", "タイル貼り", "わからない");
-      this.scroll(470);
+      this.ScrollWindow("id-6");
     },
     showFlash2: async function () {
       this.sikkariColorChange = true;
@@ -104,7 +104,7 @@ Vue.createApp({
       await this.wait(2000);
       this.advMsgIn(this.advMsg[2], this.advMsg[4]);
       await this.wait(4000);
-      this.scroll(290);
+      this.ScrollWindow("id-2");
       // グラフ表示
       await this.wait(1000);
       this.graph = true;
@@ -117,13 +117,13 @@ Vue.createApp({
       this.cheapestIcon = true;
       await this.wait(2000);
       this.advMsgIn(this.advMsg[5]);
-      this.scroll(800);
       await this.wait(2000);
+      this.ScrollWindow("id-5");
       // これ以降はざっくり計算と同じ記述
       this.advMsgIn(this.advMsg[6]);
       await this.wait(2000);
       this.questionMsgOut("ユニットバス", "タイル貼り", "わからない");
-      this.scroll(920);
+      this.ScrollWindow("id-6");
     },
     onActive(item) {
       this.colorChangeGlay = true;
@@ -151,12 +151,6 @@ Vue.createApp({
       this.newAreas.push(x);
       return this.newAreas;
     },
-    scroll: function (x) {
-      window.scrollTo({
-        top: x,
-        behavior: "smooth",
-      });
-    },
     advMsgIn: async function (x, y = undefined) {
       this.msgOut(x);
       await this.wait(1000);
@@ -175,6 +169,15 @@ Vue.createApp({
       delete x["loading"];
       await this.wait(500);
       delete x["read"];
+    },
+    ScrollWindow: function (elem) {
+      var element = document.getElementsByClassName(elem)[0];
+      var rect = element.getBoundingClientRect();
+      var elemtop = rect.top + window.pageYOffset;
+      document.documentElement.scrollTo({
+        top: elemtop - 20,
+        behavior: "smooth",
+      });
     },
   },
   watch: {
@@ -262,12 +265,7 @@ Vue.createApp({
         this.questionAnswer = "";
         this.advMsgIn(this.advMsg[7]);
         await this.wait(2000);
-        if (this.userMsg[0].msg === "ざっくり計算です") {
-          this.scroll(660);
-        }
-        if (this.userMsg[0].msg === "しっかり計算です") {
-          this.scroll(1100);
-        }
+        this.ScrollWindow("id-7");
         this.colorChangeGlay = false;
         this.questionUp = [];
         this.questionMsgOut("2畳未満", "2畳以上", " わからない");
@@ -282,21 +280,11 @@ Vue.createApp({
         await this.wait(2000);
         this.advMsgIn(this.advMsg[8]);
         await this.wait(2000);
-        if (this.userMsg[0].msg === "ざっくり計算です") {
-          this.scroll(850);
-        }
-        if (this.userMsg[0].msg === "しっかり計算です") {
-          this.scroll(1300);
-        }
+        this.ScrollWindow("id-8");
         await this.wait(1000);
         this.advMsgIn(this.advMsg[9], this.advMsg[10]);
         await this.wait(4000);
-        if (this.userMsg[0].msg === "ざっくり計算です") {
-          this.scroll(980);
-        }
-        if (this.userMsg[0].msg === "しっかり計算です") {
-          this.scroll(1430);
-        }
+        this.ScrollWindow("id-9");
         this.colorChangeGlay = false;
         this.questionUp = [];
         this.questionMsgOut("広さ重視", "節水重視", "特になし");
@@ -314,12 +302,7 @@ Vue.createApp({
         this.colorChangeGlay = false;
         this.newAreas = this.areas;
         this.todohukenQuestion = true;
-        if (this.userMsg[0].msg === "ざっくり計算です") {
-          this.scroll(1200);
-        }
-        if (this.userMsg[0].msg === "しっかり計算です") {
-          this.scroll(1690);
-        }
+        this.ScrollWindow("id-11");
       }
     },
   },
